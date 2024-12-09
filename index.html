@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy birthday Sakeena</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background: linear-gradient(135deg, #ffeb99, #ff6f91);
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .container {
+            text-align: center;
+            padding: 20px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            width: 80%;
+            max-width: 500px;
+        }
+        .container h1 {
+            font-size: 2.5em;
+            color: #ff6f61;
+        }
+        .container p {
+            font-size: 1.2em;
+            color: #555;
+            margin: 20px 0;
+        }
+        .button {
+            background: #ff6f61;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1em;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+            transition: all 0.3s ease-in-out;
+        }
+        .button:hover {
+            background: #ff3d3d;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Page 1 -->
+        <div id="page1">
+            <h1>السَّلاَمُ عَلَيْكُمْ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ </h1>
+            <p>What are your saying about me right now? Click on the appropriate option:</p>
+            <button class="button" onclick="showPage('page2')">Bhonko</button>
+            <button class="button" onclick="showPage('page3')">farmao</button>
+        </div>
+
+        <!-- Page 2 -->
+        <div id="page2" class="hidden">
+            <h1>You have selected "bhonko", How rude☹️☹️☹️</h1>
+            <p>ab agay jao. next pay click kro ab <br> (bhonko bolti hai mere ko mere ko bura lga ray)</p>
+            <button class="button" onclick="showPage('page1')">Back</button>
+            <button class="button" onclick="showPage('page4')">Next</button>
+        </div>
+
+        <!-- Page 3 -->
+        <div id="page3" class="hidden">
+            <h1>dekha abhi bhi bhonko hi select kia hai😔😔😔😔</h1>
+            <button class="button" onclick="showPage('page1')">Back</button>
+            <button class="button" onclick="showPage('page4')">Next</button>
+        </div>
+
+        <!-- Page 4 -->
+        <div id="page4" class="hidden">
+            <h1>rukk rukk rukk!!!</h1>
+            <h1>aaj tu teri birthday hai</h1>
+            <p>A very happy birthday to you buddy. You are a great human being. Have a great year ahead filled with lottt of happiness.</p>
+            <button class="button" onclick="showPage('page1')">Back</button>
+            <button class="button" onclick="redirectToPage3()">Next</button>
+        </div>
+    </div>
+
+    <script>
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.container > div').forEach(page => {
+                page.classList.add('hidden');
+            });
+            // Show the selected page
+            document.getElementById(pageId).classList.remove('hidden');
+        }
+
+        function redirectToPage3() {
+            // Redirect to page3.html
+            window.location.href = 'page3.html';
+        }
+    </script>
+</body>
+</html>

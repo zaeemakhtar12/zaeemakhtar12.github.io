@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy birthday Sakeena</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .message {
+            z-index: 1;
+            text-align: center;
+        }
+        .message h1, .message h2 {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div style="text-align: center; margin: 20px; position: relative; z-index: 1;">
+        <video controls autoplay style="width: 500px; height: 300px; max-width: 800px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); z-index: 2; position: relative;">
+            <source src="birthday.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+    
+    
+    
+    <canvas id="confettiCanvas"></canvas>
+<script>
+    const canvas = document.getElementById('confettiCanvas');
+    const ctx = canvas.getContext('2d');
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const confetti = [];
+    const colors = [
+        '#ff0000', '#ff7f00', '#ffff00', '#00ff00', '#0000ff', '#4b0082', '#8b00ff',
+        '#ff69b4', '#00ffff', '#FF5733', '#33FF57', '#3357FF', '#F1C40F', '#9B59B6',
+        '#1ABC9C', '#E74C3C', '#34495E', '#2ECC71', '#E67E22', '#FFC300', '#C70039',
+        '#900C3F', '#581845', '#DAF7A6', '#FF6F61', '#6C3483', '#F39C12', '#8E44AD',
+        '#2E4053', '#1F618D', '#16A085', '#2980B9', '#C0392B', '#7DCEA0', '#AF7AC5',
+        '#F7DC6F', '#F1948A', '#58D68D', '#85C1E9', '#B03A2E', '#76448A', '#229954',
+        '#D35400', '#C8E6C9'
+    ];
+
+    function createConfetti() {
+        const rows = Math.floor(canvas.height / 30); // Increase space between confetti
+        const cols = Math.floor(canvas.width / 30);  // Increase space between confetti
+        const totalConfetti = rows * cols / 3;        // Reduced the number of particles
+
+        for (let i = 0; i < totalConfetti; i++) {
+            const row = Math.floor(i / cols);         // Current row
+            const col = i % cols;                    // Current column
+
+            confetti.push({
+                x: col * 40 + Math.random() * 20,    // Slight randomness in X
+                y: row * 40 + Math.random() * 20,    // Slight randomness in Y
+                color: colors[Math.floor(Math.random() * colors.length)],
+                size: Math.random() * 5 + 5,         // Slightly larger size for visible confetti
+                speed: Math.random() * 2 + 1         // Speed for falling effect
+            });
+        }
+    }
+
+    function updateConfetti() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        confetti.forEach(p => {
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.size, 0, 2 * Math.PI);
+            ctx.fillStyle = p.color;
+            ctx.fill();
+            p.y += p.speed;
+            if (p.y > canvas.height) {
+                p.y = 0; // Reset to top of canvas
+            }
+        });
+
+        requestAnimationFrame(updateConfetti);
+    }
+
+    createConfetti();
+    updateConfetti();
+
+    window.addEventListener('resize', () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        confetti.length = 0; // Clear existing confetti
+        createConfetti();    // Recreate for new screen size
+    });
+</script>
+
+
+</body>
+</html>
